@@ -1,5 +1,5 @@
 {
-  "name": "naichii-agent",
+  "name": "@1naichii/naichii-agent",
   "version": "1.0.0",
   "description": "AI Agent Framework with JavaScript and SQL guidelines, rules, and memory management for consistent code quality",
   "main": "index.js",
