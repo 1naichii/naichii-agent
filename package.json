@@ -1,0 +1,59 @@
+{
+  "name": "naichii-agent",
+  "version": "1.0.0",
+  "description": "AI Agent Framework with JavaScript and SQL guidelines, rules, and memory management for consistent code quality",
+  "main": "index.js",
+  "bin": {
+    "naichii-agent": "./tools/installer/bin/naichii-agent.js"
+  },
+  "scripts": {
+    "install:naichii-agent": "node tools/installer/bin/naichii-agent.js install",
+    "test": "node tools/installer/bin/naichii-agent.js --help && node tools/installer/bin/naichii-agent.js list",
+    "sync-version": "node tools/sync-version.js",
+    "verify": "node tools/verify-publish.js",
+    "prepublishOnly": "npm run sync-version && npm run verify"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "framework",
+    "javascript",
+    "sql",
+    "code-quality",
+    "guidelines",
+    "best-practices",
+    "coding-standards",
+    "context-management",
+    "ai-assistant",
+    "copilot",
+    "cursor",
+    "development-tools"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1naichii/naichii-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1naichii/naichii-agent/issues"
+  },
+  "homepage": "https://github.com/1naichii/naichii-agent#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "context/",
+    "tools/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.0.0",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^8.2.5",
+    "js-yaml": "^4.1.0",
+    "ora": "^5.4.1"
+  }
+}

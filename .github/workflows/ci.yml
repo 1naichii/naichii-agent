@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Verify package structure
+        run: |
+          node -e "console.log('Node version:', process.version)"
+          node -e "const pkg = require('./package.json'); console.log('Package:', pkg.name, pkg.version)"
+      
+      - name: Test installer help
+        run: node tools/installer/bin/naichii-agent.js --help
+      
+      - name: Test installer list command
+        run: node tools/installer/bin/naichii-agent.js list
+      
+      - name: Test file structure
+        run: |
+          test -d context/rules/javascript || exit 1
+          test -d context/rules/sql || exit 1
+          test -d context/memory/javascript || exit 1
+          test -d context/memory/sql || exit 1
+          echo "✓ File structure verified"
+        shell: bash
+      
+      - name: Test installer in temp directory (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd /tmp
+          mkdir test-naichii-agent-${{ github.run_id }}
+          cd test-naichii-agent-${{ github.run_id }}
+          npm init -y
+          node ${{ github.workspace }}/tools/installer/bin/naichii-agent.js list
+          echo "✓ Installer works in external directory"
+      
+      - name: Test installer in temp directory (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cd $env:TEMP
+          mkdir test-naichii-agent-${{ github.run_id }}
+          cd test-naichii-agent-${{ github.run_id }}
+          npm init -y
+          node ${{ github.workspace }}/tools/installer/bin/naichii-agent.js list
+          echo "✓ Installer works in external directory"
+        shell: pwsh
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Check file permissions
+        run: |
+          test -x tools/installer/bin/naichii-agent.js && echo "✓ Installer is executable" || chmod +x tools/installer/bin/naichii-agent.js
+      
+      - name: Validate package.json
+        run: |
+          node -e "const pkg = require('./package.json'); if (!pkg.bin) throw new Error('Missing bin field'); console.log('✓ package.json valid')"
+      
+      - name: Check for required files
+        run: |
+          test -f README.md || exit 1
+          test -f LICENSE || exit 1
+          test -f CHANGELOG.md || exit 1
+          test -f CONTRIBUTING.md || exit 1
+          echo "✓ All required files present"
