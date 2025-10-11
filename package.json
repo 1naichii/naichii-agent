@@ -45,6 +45,8 @@
   "files": [
     "context/",
     "tools/",
+    ".github/instructions/",
+    ".github/chatmodes/",
     "README.md",
     "LICENSE"
   ],

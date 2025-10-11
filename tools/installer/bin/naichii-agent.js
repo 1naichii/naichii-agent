@@ -101,6 +101,8 @@ async function installFramework(options) {
         { name: 'SQL Rules & Guidelines', value: 'sql', checked: true },
         { name: 'JavaScript Memory Context', value: 'js-memory', checked: true },
         { name: 'SQL Memory Context', value: 'sql-memory', checked: true },
+        { name: 'GitHub Instructions (Copilot)', value: 'github-instructions', checked: true },
+        { name: 'GitHub Chatmodes (Copilot)', value: 'github-chatmodes', checked: true },
       ],
       validate: (selected) => {
         if (selected.length === 0) {
@@ -150,6 +152,23 @@ async function installFramework(options) {
     );
   }
 
+  // Install GitHub components
+  if (components.includes('github-instructions')) {
+    await copyDirectory(
+      path.join(sourceDir, '.github', 'instructions'),
+      path.join(installDir, '.github', 'instructions'),
+      'GitHub Instructions'
+    );
+  }
+
+  if (components.includes('github-chatmodes')) {
+    await copyDirectory(
+      path.join(sourceDir, '.github', 'chatmodes'),
+      path.join(installDir, '.github', 'chatmodes'),
+      'GitHub Chatmodes'
+    );
+  }
+
   // Create instructions reference file
   const instructionsContent = `# AI Agent Framework
 
@@ -161,6 +180,8 @@ ${components.includes('javascript') ? '- JavaScript Rules & Guidelines (`.naichi
 ${components.includes('sql') ? '- SQL Rules & Guidelines (`.naichii-agent/rules/sql/`)' : ''}
 ${components.includes('js-memory') ? '- JavaScript Memory Context (`.naichii-agent/memory/javascript/`)' : ''}
 ${components.includes('sql-memory') ? '- SQL Memory Context (`.naichii-agent/memory/sql/`)' : ''}
+${components.includes('github-instructions') ? '- GitHub Copilot Instructions (`.github/instructions/`)' : ''}
+${components.includes('github-chatmodes') ? '- GitHub Copilot Chatmodes (`.github/chatmodes/`)' : ''}
 
 ## Structure
 
@@ -246,7 +267,15 @@ async function listAvailable() {
   console.log(chalk.dim('  Memory:'));
   console.log('    - sql-memory.md          - SQL context and patterns\n');
 
-  console.log(chalk.dim('Install with:'), chalk.cyan('npx naichii-agent install\n'));
+  console.log(chalk.bold('GitHub Copilot:'));
+  console.log(chalk.dim('  Instructions:'));
+  console.log('    - javascript.instructions.md - Copilot instructions for JavaScript');
+  console.log('    - sql.instructions.md        - Copilot instructions for SQL');
+  console.log(chalk.dim('  Chatmodes:'));
+  console.log('    - javascript.chatmode.md     - Copilot chat mode for JavaScript');
+  console.log('    - sql.chatmode.md            - Copilot chat mode for SQL\n');
+
+  console.log(chalk.dim('Install with:'), chalk.cyan('npx @1naichii/naichii-agent install\n'));
 }
 
 program.parse(process.argv);
