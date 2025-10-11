@@ -66,7 +66,7 @@ Before submitting:
    ```bash
    npm link
    cd /tmp/test-project
-   npx naichii-agent install
+   npx @1naichii/naichii-agent install
    ```
 
 2. Verify all components install correctly

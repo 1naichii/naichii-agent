@@ -9,7 +9,7 @@ Get started with the AI Agent Framework in under 2 minutes!
 Run this command in any project directory:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 This will:
@@ -61,7 +61,7 @@ AI assistants (GitHub Copilot, Cursor, etc.) will automatically reference these 
 List all available components:
 
 ```bash
-npx naichii-agent list
+npx @1naichii/naichii-agent list
 ```
 
 Output:
@@ -87,7 +87,7 @@ SQL:
 Keep your framework up-to-date:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 The installer will:
@@ -120,7 +120,7 @@ cd my-app
 npm init -y
 
 # Install framework
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 
 # Select JavaScript components
 # ✓ JavaScript Rules & Guidelines
@@ -133,7 +133,7 @@ npx naichii-agent install
 
 ```bash
 # Install all components
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 
 # Select all:
 # ✓ JavaScript Rules & Guidelines
@@ -173,7 +173,7 @@ If installation fails:
 node --version
 
 # Try with verbose output
-npx naichii-agent install --verbose
+npx @1naichii/naichii-agent install --verbose
 ```
 
 ### Permission Issues
@@ -202,7 +202,7 @@ cat .naichii-agent/README.md
 1. **Read the Rules**: Familiarize yourself with the guidelines in `.naichii-agent/rules/`
 2. **Customize**: Adapt rules to your project's needs
 3. **Share**: Commit `.naichii-agent/` to help your team
-4. **Update**: Regularly update with `npx naichii-agent install`
+4. **Update**: Regularly update with `npx @1naichii/naichii-agent install`
 
 ## Getting Help
 

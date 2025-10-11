@@ -9,7 +9,7 @@ A comprehensive framework for managing AI agent context, rules, and memory for J
 Install the framework in any project with:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 **What happens:**
@@ -22,7 +22,7 @@ npx naichii-agent install
 
 **Example:**
 ```bash
-$ npx naichii-agent install
+$ npx @1naichii/naichii-agent install
 
 ╔═══════════════════════════════════════╗
 ║     AI AGENT FRAMEWORK INSTALLER      ║
@@ -63,7 +63,7 @@ The framework provides:
 ### Interactive Installation (Recommended)
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 Select the components you need:
@@ -75,7 +75,7 @@ Select the components you need:
 ### List Available Components
 
 ```bash
-npx naichii-agent list
+npx @1naichii/naichii-agent list
 ```
 
 ## 📁 Framework Structure
@@ -114,7 +114,7 @@ your-project/
 Keep your framework up-to-date:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 The installer will update existing installations and preserve your customizations.
@@ -182,16 +182,16 @@ MIT License - see LICENSE file for details
 
 ```bash
 # Install/update framework
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 
 # List available components
-npx naichii-agent list
+npx @1naichii/naichii-agent list
 
 # Show help
-npx naichii-agent --help
+npx @1naichii/naichii-agent --help
 
 # Show version
-npx naichii-agent --version
+npx @1naichii/naichii-agent --version
 ```
 
 ## 🧪 Testing
@@ -207,7 +207,7 @@ npm link
 
 # Test in another project
 cd /path/to/test-project
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 
 # Run tests
 npm test

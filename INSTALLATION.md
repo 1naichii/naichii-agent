@@ -9,7 +9,7 @@ This document provides step-by-step instructions for publishing and using the AI
 Simply run in your project directory:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 This will:
@@ -23,7 +23,7 @@ This will:
 Run the same command to update:
 
 ```bash
-npx naichii-agent install
+npx @1naichii/naichii-agent install
 ```
 
 The installer will detect the existing installation and offer to update it.
