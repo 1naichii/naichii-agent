@@ -99,8 +99,10 @@ async function installFramework(options) {
       choices: [
         { name: 'JavaScript Rules & Guidelines', value: 'javascript', checked: true },
         { name: 'SQL Rules & Guidelines', value: 'sql', checked: true },
+        { name: 'PHP Rules & Guidelines', value: 'php', checked: true },
         { name: 'JavaScript Memory Context', value: 'js-memory', checked: true },
         { name: 'SQL Memory Context', value: 'sql-memory', checked: true },
+        { name: 'PHP Memory Context', value: 'php-memory', checked: true },
         { name: 'GitHub Instructions (Copilot)', value: 'github-instructions', checked: true },
         { name: 'GitHub Chatmodes (Copilot)', value: 'github-chatmodes', checked: true },
       ],
@@ -152,6 +154,23 @@ async function installFramework(options) {
     );
   }
 
+  // Install PHP components
+  if (components.includes('php')) {
+    await copyDirectory(
+      path.join(sourceDir, 'context', 'rules', 'php'),
+      path.join(installDir, '.naichii-agent', 'rules', 'php'),
+      'PHP Rules'
+    );
+  }
+
+  if (components.includes('php-memory')) {
+    await copyDirectory(
+      path.join(sourceDir, 'context', 'memory', 'php'),
+      path.join(installDir, '.naichii-agent', 'memory', 'php'),
+      'PHP Memory'
+    );
+  }
+
   // Install GitHub components
   if (components.includes('github-instructions')) {
     await copyDirectory(
@@ -178,8 +197,10 @@ This project uses the AI Agent Framework for maintaining code quality and consis
 
 ${components.includes('javascript') ? '- JavaScript Rules & Guidelines (`.naichii-agent/rules/javascript/`)' : ''}
 ${components.includes('sql') ? '- SQL Rules & Guidelines (`.naichii-agent/rules/sql/`)' : ''}
+${components.includes('php') ? '- PHP Rules & Guidelines (`.naichii-agent/rules/php/`)' : ''}
 ${components.includes('js-memory') ? '- JavaScript Memory Context (`.naichii-agent/memory/javascript/`)' : ''}
 ${components.includes('sql-memory') ? '- SQL Memory Context (`.naichii-agent/memory/sql/`)' : ''}
+${components.includes('php-memory') ? '- PHP Memory Context (`.naichii-agent/memory/php/`)' : ''}
 ${components.includes('github-instructions') ? '- GitHub Copilot Instructions (`.github/instructions/`)' : ''}
 ${components.includes('github-chatmodes') ? '- GitHub Copilot Chatmodes (`.github/chatmodes/`)' : ''}
 
@@ -266,6 +287,17 @@ async function listAvailable() {
   console.log('    - stored-procedures.md   - Stored procedure guidelines');
   console.log(chalk.dim('  Memory:'));
   console.log('    - sql-memory.md          - SQL context and patterns\n');
+
+  console.log(chalk.bold('PHP:'));
+  console.log(chalk.dim('  Rules:'));
+  console.log('    - basics.md        - PHP fundamentals and PSR standards');
+  console.log('    - async.md         - Asynchronous PHP programming');
+  console.log('    - security.md      - PHP security best practices');
+  console.log('    - testing.md       - Testing with PHPUnit');
+  console.log('    - optimization.md  - Performance optimization');
+  console.log('    - advanced.md      - Advanced PHP patterns');
+  console.log(chalk.dim('  Memory:'));
+  console.log('    - php-memory.md    - PHP context and patterns\n');
 
   console.log(chalk.bold('GitHub Copilot:'));
   console.log(chalk.dim('  Instructions:'));
