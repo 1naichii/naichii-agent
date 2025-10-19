@@ -303,9 +303,11 @@ async function listAvailable() {
   console.log(chalk.dim('  Instructions:'));
   console.log('    - javascript.instructions.md - Copilot instructions for JavaScript');
   console.log('    - sql.instructions.md        - Copilot instructions for SQL');
+  console.log('    - php.instructions.md        - Copilot instructions for PHP');
   console.log(chalk.dim('  Chatmodes:'));
   console.log('    - javascript.chatmode.md     - Copilot chat mode for JavaScript');
-  console.log('    - sql.chatmode.md            - Copilot chat mode for SQL\n');
+  console.log('    - sql.chatmode.md            - Copilot chat mode for SQL');
+  console.log('    - php.chatmode.md            - Copilot chat mode for PHP\n');
 
   console.log(chalk.dim('Install with:'), chalk.cyan('npx @1naichii/naichii-agent install\n'));
 }
